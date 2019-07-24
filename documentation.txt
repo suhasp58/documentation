@@ -1,0 +1,68 @@
+    1. Install redis server in linux box.
+   
+       Run the commands in the CLI to install and setup redis.
+       sudo apt-get update
+       sudo apt-get upgrade
+	   sudo apt-get install redis-server
+	   sudo systemctl enable redis-server.service
+	
+	   now type " redis-cli -h localhost -p 6397" or " redis-cli" to start redis 
+	   you can see redis get started in the cli 
+	   Once this step is completed go to step 2 i.e., getting code from git and building it.
+	
+	
+	2. Get the code from the github repository for spring server application to send data into redis.
+	   Type " git clone https://github.com/suhasp58/server1.git " in the CLI to get the server1 code.
+	   Type " git clone https://github.com/suhasp58/server2.git " in the CLI to get the server2 code.
+	   Type " git clone https://github.com/suhasp58/server3.git " in the CLI to get the server3 code.
+	   Type " git clone https://github.com/suhasp58/server4.git " in the CLI to get the server4 code.
+	   Type " git clone https://github.com/suhasp58/JSONFile.git " in the CLI to get the JSONFILE repository.
+
+
+	   a.Goto to cloned repository server1 and Build the code obtained from git hub.
+	   Now run "mvn clean install" to build project.
+	   After successful installation we will see jar file generated in target folder.
+	   Run "java -jar -Dserver.port=8085 target/springredis-0.0.1-SNAPSHOT.jar 5000 &" to start spring app on port 8085 running in the background with refresh time of 5 seconds.
+	   
+	   b.Goto to cloned repository server2 and Build the code obtained from git hub.
+	   Now run "mvn clean install" to build project.
+	   After successful installation we will see jar file generated in target folder.
+	   Run "java -jar -Dserver.port=8086 target/springredis-0.0.1-SNAPSHOT.jar 5000 &" to start spring app on port 8086 running in the background with refresh time of 5 seconds.
+	   
+	   c.Goto to cloned repository server3 and Build the code obtained from git hub.
+	   Now run "mvn clean install" to build project.
+	   After successful installation we will see jar file generated in target folder.
+	   Run "java -jar -Dserver.port=8088 target/springredis-0.0.1-SNAPSHOT.jar 5000 &" to start spring app on port 8088 running in the background with refresh time of 5 seconds.
+	   
+	   d.Goto to cloned repository server4 and Build the code obtained from git hub.
+	   Now run "mvn clean install" to build project.
+	   After successful installation we will see jar file generated in target folder.
+	   Run "java -jar -Dserver.port=8089 target/springredis-0.0.1-SNAPSHOT.jar 5000 &" to start spring app on port 8089 running in the background with refresh time of 5 seconds.
+	   
+	  
+	   
+	3. Get the code from the github repository for spring client application to get data from redis.
+	   Type " git clone https://github.com/suhasp58/springclient.git " in the CLI to get the server code.
+	   Goto to cloned repository Build the code obtained from git hub.
+	   now go to src->main->resources->application properties and change the ip address to the ip where redis is running.
+       Now run "mvn clean install" to build project.
+	   After successful installation we will see jar file generated in target folder.
+	   Run "java -jar -Dserver.port=8082 target/springclient-0.0.1-SNAPSHOT.jar 5000 &" to start spring app on port 8082.
+	   
+	   Now run the following command to get the data.
+	   
+	   RUN 
+	   
+	   "   curl \
+         --request POST \
+         --data '{
+         "server":"10.37.56.1",
+		 "port":8086
+           }' \
+         https://localhost:8085/server/getData   "
+
+		
+		
+		//Vary the servers and ports as per the requirement.
+		 and retrieve the corresponding data.
+		
