@@ -1,0 +1,100 @@
+    1. Install redis server in linux box.
+   
+       Run the commands in the CLI to install and setup redis.
+       sudo apt-get update
+       sudo apt-get upgrade
+	   sudo apt-get install redis-server
+	   systemctl start redis-server.service
+	    sed -i 's/bind 127.0.0.1 ::1/bind 0.0.0.0/g' /etc/redis/redis.conf
+	    systemctl stop redis-server.service
+	    systemctl start redis-server.service
+	   now type " redis-cli -h localhost -p 6379" or " redis-cli" to start redis 
+	   you can see redis get started in the cli 
+	   Once this step is completed go to step 2 i.e., getting code from git and building it.
+	
+	
+	2. Get the code from the github repository for data-pusher application to send data into redis.
+	   Type " git clone https://github.com/suhasp58/data-pusher.git " in the CLI to get the data-pusher code.
+	   Type " git clone https://github.com/suhasp58/File.git " in the CLI to get the FILE repository.
+	   clone both the repositories in the same directory.
+	   
+	   a.Goto to cloned repository data-pusher and Build the code obtained from git hub using the command mentioned below.
+	   Now run 
+	   "mvn clean install" to build project.
+	   
+	   After successful installation we can see jar file generated in target folder.
+	   Run 
+	   "java -jar -Dserver.port=8081 target/springredis-0.0.1-SNAPSHOT.jar 8081 5000 /File/File1.txt " to start data-pusher for process-1 running on port 8081 with refresh time of 5 seconds.
+	   "java -jar -Dserver.port=8082 target/springredis-0.0.1-SNAPSHOT.jar 8082 5000 /File/File2.txt " to start data-pusher for process-2 running on port 8082  with refresh time of 5 seconds.
+	   "java -jar -Dserver.port=8083 target/springredis-0.0.1-SNAPSHOT.jar 8083 5000 /File/File3.txt " to start data-pusher for process-3 running on port 8083  with refresh time of 5 seconds.
+	   "java -jar -Dserver.port=8084 target/springredis-0.0.1-SNAPSHOT.jar 8084 5000 /File/File4.txt " to start data-pusher for process-4 running on port 8084  with refresh time of 5 seconds.
+
+	   Note: -Dserver.port overwrites the default port associated with the spring boot.
+	     
+	3. Get the code from the github repository for spring client application to get data from redis.
+	   Type " git clone https://github.com/suhasp58/data-retriever.git " in the CLI to get the server code.
+	   Goto to cloned repository Build the code obtained from git hub.
+	   #note: The ip address of redis is set to localhost and can be changed as per the host machine in application.properties file.
+       Now run "mvn clean install" to build project.
+	   After successful installation we can see jar file generated in target folder.
+	   Run "java -jar -Dserver.port=8089 target/RedisClient-0.0.1-SNAPSHOT.jar " to start spring app on port 8089.
+	   
+	   type:
+	         curl \
+                 --header "Content-type: application/json" \
+                 --request POST \
+                 --data '{
+                 "server":"10.37.56.1",
+                  "port":8085
+                  }' \
+                  http://localhost:8089/server/getData
+	   
+	   
+	  Note : The server and port numbers can be verified as per the requirements.
+	  
+	  
+	  
+	  
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     Dockerizing the Project:
+	 
+	 step 1:
+	 
+	 Go to / directory and then clone the below mentioned repositiory uisng the following command
+	 
+	 " git clone https://github.com/suhasp58/build_sc.git "
+	 
+	 Now go to your cloned repositiory and you can fine build.sh named shell script.
+	 Open the build.sh file using " vi build.sh " 
+	 Remove the '#' at the beginning for both lines 4 and 5.
+	 Now go to line 5 and replace "<yourip>" with ip address of your local machine within double quotes ("").
+	 Now save the file using ESCAPE followed by :wq  .
+	 #This will change the ip address to your address in the source file.
+	 Now run the script using "bash build.sh"
+	 
+	 Upon successful completion you can find the docker containers up by checking out using " docker ps "
+	 
+     step 2:
+	 
+	  now clone " git clone https://github.com/suhasp58/data-retriever.git " 
+	  #note: The ip address of redis is set to localhost and can be changed as per the host machine in application.properties file.
+       Now run "mvn clean install" to build project.
+	   After successful installation we can see jar file generated in target folder.
+	   Run "java -jar -Dserver.port=8089 target/RedisClient-0.0.1-SNAPSHOT.jar " to start spring app on port 8089.
+	   
+	   type:
+	         curl \
+                 --header "Content-type: application/json" \
+                 --request POST \
+                 --data '{
+                 "server":"10.37.56.1",
+                  "port":8085
+                  }' \
+                  http://localhost:8089/server/getData
+				  
+				  
+				  #In the local host you can give your ip.
+	   
+	   
+	  Note : The server and port numbers can be verified as per the requirements.
+	  
