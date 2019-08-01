@@ -15,7 +15,7 @@
 	
 	2. Get the code from the github repository for data-pusher application to send data into redis.
 	   Type " git clone https://github.com/suhasp58/data-pusher.git " in the CLI to get the data-pusher code.
-	   Type " git clone https://github.com/suhasp58/File.git " in the CLI to get the FILE repository.
+	   Type " git clone https://github.com/suhasp58/input-data.git " in the CLI to get the FILE repository.
 	   clone both the repositories in the same directory.
 	   
 	   a.Goto to cloned repository data-pusher and Build the code obtained from git hub using the command mentioned below.
@@ -24,10 +24,10 @@
 	   
 	   After successful installation we can see jar file generated in target folder.
 	   Run 
-	   "java -jar -Dserver.port=8081 target/springredis-0.0.1-SNAPSHOT.jar 8081 5000 /File/File1.txt " to start data-pusher for process-1 running on port 8081 with refresh time of 5 seconds.
-	   "java -jar -Dserver.port=8082 target/springredis-0.0.1-SNAPSHOT.jar 8082 5000 /File/File2.txt " to start data-pusher for process-2 running on port 8082  with refresh time of 5 seconds.
-	   "java -jar -Dserver.port=8083 target/springredis-0.0.1-SNAPSHOT.jar 8083 5000 /File/File3.txt " to start data-pusher for process-3 running on port 8083  with refresh time of 5 seconds.
-	   "java -jar -Dserver.port=8084 target/springredis-0.0.1-SNAPSHOT.jar 8084 5000 /File/File4.txt " to start data-pusher for process-4 running on port 8084  with refresh time of 5 seconds.
+	   "java -jar -Dserver.port=8081 target/springredis-0.0.1-SNAPSHOT.jar 8081 5000 /input-data/jsonfile1.txt " to start data-pusher for process-1 running on port 8081 with refresh time of 5 seconds.
+	   "java -jar -Dserver.port=8082 target/springredis-0.0.1-SNAPSHOT.jar 8082 5000 /input-data/jsonfile2.txt " to start data-pusher for process-2 running on port 8082  with refresh time of 5 seconds.
+	   "java -jar -Dserver.port=8083 target/springredis-0.0.1-SNAPSHOT.jar 8083 5000 /input-data/jsonfile3.txt " to start data-pusher for process-3 running on port 8083  with refresh time of 5 seconds.
+	   "java -jar -Dserver.port=8084 target/springredis-0.0.1-SNAPSHOT.jar 8084 5000 /input-data/jsonfile4.txt " to start data-pusher for process-4 running on port 8084  with refresh time of 5 seconds.
 
 	   Note: -Dserver.port overwrites the default port associated with the spring boot.
 	     
@@ -66,8 +66,8 @@
 	 
 	 Now go to your cloned repositiory and you can fine build.sh named shell script.
 	 Open the build.sh file using " vi build.sh " 
-	 Remove the '#' at the beginning for both lines 4 and 5.
-	 Now go to line 5 and replace "<yourip>" with ip address of your local machine within double quotes ("").
+	 Remove the '#' at the beginning for both line 4 .
+	 Now go to line 4 and replace "<yourip>" with ip address of your local machine within double quotes ("").
 	 Now save the file using ESCAPE followed by :wq  .
 	 #This will change the ip address to your address in the source file.
 	 Now run the script using "bash build.sh"
