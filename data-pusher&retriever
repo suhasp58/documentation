@@ -39,18 +39,14 @@
 	   After successful installation we can see jar file generated in target folder.
 	   Run "java -jar -Dserver.port=8089 target/RedisClient-0.0.1-SNAPSHOT.jar " to start spring app on port 8089.
 	   
-	   type:
-	         curl \
-                 --header "Content-type: application/json" \
-                 --request POST \
-                 --data '{
-                 "server":"10.37.56.1",
-                  "port":8085
-                  }' \
-                  http://localhost:8089/server/getData
-	   
-	   
+	  type:
+	         curl  'http://localhost:8089/server/getData?server=10.37.56.1&port=8085'
+
 	  Note : The server and port numbers can be verified as per the requirements.
+	  servers :
+	  10.37.56.1 , 10.37.56.2 , 10.37.56.11 , 10.37.56.12 
+	  ports :
+	  8085 , 8080 , 8085 , 8080 , 8088 .
 	  
 	  
 	  
@@ -83,18 +79,12 @@
 	   Run "java -jar -Dserver.port=8089 target/RedisClient-0.0.1-SNAPSHOT.jar " to start spring app on port 8089.
 	   
 	   type:
-	         curl \
-                 --header "Content-type: application/json" \
-                 --request POST \
-                 --data '{
-                 "server":"10.37.56.1",
-                  "port":8085
-                  }' \
-                  http://localhost:8089/server/getData
-				  
-				  
-				  #In the local host you can give your ip.
-	   
-	   
+	         curl  'http://localhost:8089/server/getData?server=10.37.56.1&port=8085'
+
 	  Note : The server and port numbers can be verified as per the requirements.
+	  servers :
+	  10.37.56.1 , 10.37.56.2 , 10.37.56.11 , 10.37.56.12 
+	  ports :
+	  8085 , 8080 , 8085 , 8080 , 8088 .
+	  
 	  
