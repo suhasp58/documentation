@@ -56,8 +56,6 @@
 	 
 	 step 1:
 	 
-	 Go to / directory and then clone the below mentioned repositiory uisng the following command
-	 
 	 " git clone https://github.com/suhasp58/build_sc.git "
 	 
 	 Now go to your cloned repositiory and you can fine build.sh named shell script.
